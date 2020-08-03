@@ -5,6 +5,7 @@ import XCTest
 class UnitTestCase: XCTestCase {
     var mockDateService: MockDateService!
     var mockNetworkService: MockNetworkService!
+    var mockSmurfService: MockSmurfService!
     
     // MARK: - Test lifecycle
     
@@ -23,6 +24,10 @@ class UnitTestCase: XCTestCase {
             mockNetworkService = mock
             Injected.networkService = mock
         }
+        if let mock = createMockSmurfService() {
+            mockSmurfService = mock
+            Injected.smurfService = mock
+        }
     }
     
     // MARK: - Subclassing
@@ -32,5 +37,8 @@ class UnitTestCase: XCTestCase {
     }
     func createMockNetworkService() -> MockNetworkService? {
         return MockNetworkService()
+    }
+    func createMockSmurfService() ->  MockSmurfService? {
+        return MockSmurfService()
     }
 }

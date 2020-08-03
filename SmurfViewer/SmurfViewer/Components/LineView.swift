@@ -14,6 +14,6 @@ class LineView: UIView
     {
         super.init(coder: aDecoder)
         
-        self.backgroundColor = color3
+        self.backgroundColor = color1
     }
 }
