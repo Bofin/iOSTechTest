@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "6C4F543E-1F66-4C31-81D5-9865500A2018"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70033986-B08B-4C2D-9D99-F258A4A6AB6E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SmurfViewer/Models/SmurfModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "unknown"
+            landmarkType = "0">
+            <Locations>
+               <Location
+                  uuid = "70033986-B08B-4C2D-9D99-F258A4A6AB6E - 6d166998607349a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SmurfViewer.SmurfModel.mappingFromArray(SmurfViewer.NetworkResponse) -&gt; Swift.Array&lt;SmurfViewer.SmurfModel&gt;"
+                  moduleName = "SmurfViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arturo/Documents/XCode/iOSTechTest/SmurfViewer/SmurfViewer/Models/SmurfModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "300">
+               </Location>
+               <Location
+                  uuid = "70033986-B08B-4C2D-9D99-F258A4A6AB6E - 933cf660c6974940"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SmurfViewer.Throwable&lt;SmurfViewer.SmurfModel&gt;) -&gt; Swift.Optional&lt;SmurfViewer.SmurfModel&gt; in static SmurfViewer.SmurfModel.mappingFromArray(SmurfViewer.NetworkResponse) -&gt; Swift.Array&lt;SmurfViewer.SmurfModel&gt;"
+                  moduleName = "SmurfViewer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/arturo/Documents/XCode/iOSTechTest/SmurfViewer/SmurfViewer/Models/SmurfModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "34">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "49E0B428-B50B-4D5F-A6BC-940097C87189"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SmurfViewer/Components/CustomImageView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "loadImageUsingUrlString(urlString:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

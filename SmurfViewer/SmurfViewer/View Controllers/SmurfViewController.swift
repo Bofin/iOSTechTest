@@ -1,41 +1,92 @@
 import UIKit
 
-class SmurfViewController: UIViewController {
-    let lbTitle = UILabel()
-    let lbDescription = UILabel()
+class SmurfViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+        
+    var smurfs = [SmurfModel()]
+    
+    var tableSmurfs = UITableView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
         navigationItem.title = ""
-
-        //Title Label
-
-        lbTitle.translatesAutoresizingMaskIntoConstraints = false
-        lbTitle.text = "Over to you!"
-        lbTitle.textColor = .black
-        lbTitle.font = .systemFont(ofSize: 24, weight: .semibold)
-        view.addSubview(lbTitle)
-
-        NSLayoutConstraint.activate([
-            lbTitle.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            lbTitle.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 15)
-        ])
-
-        //Description Label
-
-        lbDescription.translatesAutoresizingMaskIntoConstraints = false
-        lbDescription.numberOfLines = 0
-        lbDescription.text = "Your objective is to list all the Smurfs found in the smurfs.payload json.\n\nPlease implement this view as you see fit, paying close attention to the project requirements document.\n\nBear in mind that Smurfs can only be truly happy when they know that the key components of their app are unit tested. Look at DateServiceTests.swift (written by Papa Smurf himself) for inspiration if you're stuck.\n\nGood luck!!"
-        lbDescription.font = .systemFont(ofSize: 14, weight: .semibold)
-        lbDescription.textColor = .black
-        view.addSubview(lbDescription)
+        
+        tableSmurfs.delegate = self
+        tableSmurfs.dataSource = self
+        tableSmurfs.register((UINib(nibName: "SmurfCell", bundle: nil)), forCellReuseIdentifier: "SmurfCell")
+                
+        //Smurfs Table
+        
+        tableSmurfs.delegate = self
+        tableSmurfs.dataSource = self
+        tableSmurfs.estimatedRowHeight = 200
+        tableSmurfs.rowHeight = UITableView.automaticDimension
+        
+        tableSmurfs.register(UINib(nibName:"SmurfCell", bundle: nil), forCellReuseIdentifier: "SmurfCell")
+        
+        tableSmurfs.translatesAutoresizingMaskIntoConstraints = false
+        tableSmurfs.separatorColor = color1
+        tableSmurfs.showsVerticalScrollIndicator = false
+        tableSmurfs.separatorStyle = .none
+        view.addSubview(tableSmurfs)
 
         NSLayoutConstraint.activate([
-            lbDescription.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            lbDescription.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            lbDescription.topAnchor.constraint(equalTo: lbTitle.bottomAnchor, constant: 30)
+            tableSmurfs.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            tableSmurfs.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            tableSmurfs.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            tableSmurfs.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
         ])
+
     }
+    
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(animated)
+
+        Injected.smurfService.getSmurfs { (smurfs) in
+            self.smurfs = smurfs
+            
+            DispatchQueue.main.async {
+                self.tableSmurfs.reloadData()
+            }
+        }
+    }
+    
+    
+    
+    //MARK: TableviewMethods
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.smurfs.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        200
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let myCell = tableView.dequeueReusableCell(withIdentifier: "SmurfCell", for: indexPath) as! SmurfCell
+        
+        myCell.config(model: smurfs[indexPath.row])
+        return myCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let smurfViewController = DetailViewController()
+        let cell = tableView.cellForRow(at: indexPath) as! SmurfCell
+        smurfViewController.cacheImage = cell.smurfImage.image!
+        smurfViewController.smurf = smurfs[indexPath.item]
+        navigationController?.pushViewController(smurfViewController, animated: true)
+    }
+    
+    
+    
+    
+    
+    
 }
